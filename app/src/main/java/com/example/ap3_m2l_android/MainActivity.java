@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     if(myDbHelper.login(login, password)){
                         Toast.makeText(MainActivity.this, "Connecté avec succès", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, ChoixDateSalle.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(MainActivity.this, ChoixDateSalle.class);
+                        //startActivity(intent);
                     }
                 }
 
