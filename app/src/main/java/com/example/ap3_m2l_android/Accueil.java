@@ -2,6 +2,7 @@ package com.example.ap3_m2l_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -91,6 +92,11 @@ public class Accueil extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Clicked Button Index :" + index,
                             Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(Accueil.this, Formation.class);
+                    intent.putExtra("IdD", ID);
+                    intent.putExtra("IdF", index);
+                    startActivity(intent);
 
                 }
             });
