@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "bdDigicode";
+    private static final String DATABASE_NAME = "bdFormM2L";
  
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION); 
@@ -24,30 +24,36 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
 
         // Creation d'un jeu d'essai
-        
+
         db.execSQL("INSERT INTO users VALUES(1,'a@gmail.com',123)");
         db.execSQL("INSERT INTO users VALUES(2,'b@gmail.com',456)");
 
-        String CREATE_DIGICODE_TABLE = "CREATE TABLE digicode ( " +
-                "salle TEXT, " +
-                "date Date, " +
-                "digicode TEXT, " +
-                "primary key (salle, date)" +
-                ");";
+        String CREATE_DOMAINE_TABLE = "CREATE TABLE domaine ( " +
+                "idD INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "libelleD TEXT)";
 
+        db.execSQL(CREATE_DOMAINE_TABLE);
 
-        db.execSQL(CREATE_DIGICODE_TABLE);
+        String CREATE_FORMATION_TABLE = "CREATE TABLE formation ( " +
+                "idF INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "idDom INTEGER, "+
+                "libelleF TEXT, "+
+                "FOREIGN KEY(idDom) REFERENCES domaine(idD))";
 
-        // Creation d'un jeu d'essai
+        db.execSQL(CREATE_FORMATION_TABLE);
 
-        db.execSQL("INSERT INTO digicode VALUES('Majorelle','2023-03-14','0123')");
-        db.execSQL("INSERT INTO digicode VALUES('Gruber','2023-03-14','0123')");
-        db.execSQL("INSERT INTO digicode VALUES('Lamour','2023-03-14','0123')");
-        db.execSQL("INSERT INTO digicode VALUES('Longwy','2023-03-14','0123')");
-        db.execSQL("INSERT INTO digicode VALUES('Majorelle','2023-03-15','4567')");
+        String CREATE_SESSION_TABLE = "CREATE TABLE session ( " +
+                "idS INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "idDom INTEGER, "+
+                "idForm INTEGER, "+
+                "dateDebut DATE, " +
+                "dateFin DATE, "+
+                "FOREIGN KEY(idDom) REFERENCES domaine(idD), "+
+                "FOREIGN KEY(idForm) REFERENCES formation(idF))";
 
+        db.execSQL(CREATE_SESSION_TABLE);
     }
- 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS users");
@@ -59,7 +65,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      */
  
     private static final String TABLE_USERS = "users";
-    private static final String TABLE_DIGICODE = "digicode";
 
  
     private static final String USERS_KEY_ID = "id";
@@ -85,7 +90,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     	
 	    return false;
 	}
-
+/*
     public String recupDigicode(int day, int month, int year, String salle) {
 
         //2015-12-17
@@ -105,5 +110,5 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         }
 
         return "";
-    }
+    }*/
 }
