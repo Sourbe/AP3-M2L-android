@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Formations M2L</string>
+
+    <string-array name="domaine_array">
+        <item>Choisir une formation</item>
+        <item>Gestion</item>
+        <item>Informatique</item>
+        <item>Développement durable</item>
+        <item>Secourisme</item>
+        <item>Communication</item>
+    </string-array>
+
 </resources>

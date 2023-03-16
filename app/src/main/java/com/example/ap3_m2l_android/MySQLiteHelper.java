@@ -27,7 +27,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO users VALUES(2,'b@gmail.com',456)");
 
         String CREATE_DOMAINE_TABLE = "CREATE TABLE domaine ( " +
-                "idD INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "idD INTEGER PRIMARY KEY, " +
                 "libelle TEXT)";
 
         db.execSQL(CREATE_DOMAINE_TABLE);
