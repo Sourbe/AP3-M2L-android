@@ -151,8 +151,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             if(mCursor.getCount() > 0)
             {
                 String[] res = new String[mCursor.getCount()];
+                mCursor.moveToFirst();
                 for (int i = 0; i < mCursor.getCount(); i++){
-                    res[i] = mCursor.getString(i);
+                    res[i] = mCursor.getString(0);
+                    mCursor.moveToNext();
                 }
                 return res;
             }
