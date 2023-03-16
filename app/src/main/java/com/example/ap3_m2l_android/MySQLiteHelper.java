@@ -30,7 +30,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         String CREATE_DOMAINE_TABLE = "CREATE TABLE domaine ( " +
                 "idD INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "libelleD TEXT)";
+                "libelle TEXT)";
 
         db.execSQL(CREATE_DOMAINE_TABLE);
 
@@ -41,23 +41,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO domaine VALUES(5,'Communication')");
 
         String CREATE_FORMATION_TABLE = "CREATE TABLE formation ( " +
-                "idF INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "idDom INTEGER, "+
-                "libelleF TEXT, "+
+                "idF INTEGER, " +
+                "libelle TEXT, "+
+                "PRIMARY KEY(idDom,idF), "+
                 "FOREIGN KEY(idDom) REFERENCES domaine(idD))";
 
         db.execSQL(CREATE_FORMATION_TABLE);
 
         db.execSQL("INSERT INTO formation VALUES(1,1,'Gestion 1')");
-        db.execSQL("INSERT INTO formation VALUES(2,1,'Gestion 2')");
-        db.execSQL("INSERT INTO formation VALUES(3,2,'Informatique 1')");
-        db.execSQL("INSERT INTO formation VALUES(4,2,'Informatique 2')");
-        db.execSQL("INSERT INTO formation VALUES(5,3,'Développement durable 1')");
-        db.execSQL("INSERT INTO formation VALUES(6,3,'Développement durable 2')");
-        db.execSQL("INSERT INTO formation VALUES(7,4,'Secourisme 1')");
-        db.execSQL("INSERT INTO formation VALUES(8,4,'Secourisme 2')");
-        db.execSQL("INSERT INTO formation VALUES(9,5,'Communication 1')");
-        db.execSQL("INSERT INTO formation VALUES(10,5,'Communication 2')");
+        db.execSQL("INSERT INTO formation VALUES(1,2,'Gestion 2')");
+        db.execSQL("INSERT INTO formation VALUES(2,1,'Informatique 1')");
+        db.execSQL("INSERT INTO formation VALUES(2,2,'Informatique 2')");
+        db.execSQL("INSERT INTO formation VALUES(3,1,'Développement durable 1')");
+        db.execSQL("INSERT INTO formation VALUES(3,2,'Développement durable 2')");
+        db.execSQL("INSERT INTO formation VALUES(4,1,'Secourisme 1')");
+        db.execSQL("INSERT INTO formation VALUES(4,2,'Secourisme 2')");
+        db.execSQL("INSERT INTO formation VALUES(5,1,'Communication 1')");
+        db.execSQL("INSERT INTO formation VALUES(5,2,'Communication 2')");
 
         String CREATE_SESSION_TABLE = "CREATE TABLE session ( " +
                 "idDom INTEGER, "+
@@ -157,7 +158,23 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     public String[] getDomaines() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_DOMAINE, new String[]{});
+        Cursor mCursor = db.rawQuery("SELECT libelle FROM " + TABLE_DOMAINE, new String[]{});
+        if (mCursor != null) {
+            if(mCursor.getCount() > 0)
+            {
+                String[] res = new String[mCursor.getCount()];
+                for (int i = 0; i < mCursor.getCount(); i++){
+                    res[i] = mCursor.getString(i);
+                }
+                return res;
+            }
+        }
+        return new String[]{};
+    }
+
+    public String[] getFormations(int idD) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor mCursor = db.rawQuery("SELECT libelle FROM " + TABLE_FORMATION + " WHERE idDom=?", new String[]{Integer.toString(idD)});
         if (mCursor != null) {
             if(mCursor.getCount() > 0)
             {
