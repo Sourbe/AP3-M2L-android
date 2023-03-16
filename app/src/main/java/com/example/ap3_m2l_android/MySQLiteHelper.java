@@ -44,6 +44,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 "idDom INTEGER, "+
                 "idF INTEGER, " +
                 "libelle TEXT, "+
+                "description TEST, "+
                 "PRIMARY KEY(idDom,idF), "+
                 "FOREIGN KEY(idDom) REFERENCES domaine(idD))";
 
@@ -134,13 +135,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     	Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE login=? AND password=?", new String[]{login,password});
     	
     	if (mCursor != null) {
-    		// S'il y a un resultat...
 	    	if(mCursor.getCount() > 0)
 	    	{
 	    		return true;
 	    	}
 	    }
-    	
 	    return false;
 	}
 
@@ -165,6 +164,24 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public String[] getFormations(int idD) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor mCursor = db.rawQuery("SELECT libelle FROM " + TABLE_FORMATION + " WHERE idDom=?", new String[]{Integer.toString(idD)});
+        if (mCursor != null) {
+            if(mCursor.getCount() > 0)
+            {
+                String[] res = new String[mCursor.getCount()];
+                mCursor.moveToFirst();
+                for (int i = 0; i < mCursor.getCount(); i++){
+                    res[i] = mCursor.getString(0);
+                    mCursor.moveToNext();
+                }
+                return res;
+            }
+        }
+        return new String[]{};
+    }
+
+    public String[] getFormation(int idD, int idF) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor mCursor = db.rawQuery("SELECT libelle, description FROM " + TABLE_FORMATION + " WHERE idDom=? AND idF=?", new String[]{Integer.toString(idD), Integer.toString(idF)});
         if (mCursor != null) {
             if(mCursor.getCount() > 0)
             {
