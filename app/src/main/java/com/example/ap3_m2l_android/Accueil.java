@@ -28,7 +28,7 @@ public class Accueil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         final LinearLayout lm = (LinearLayout) findViewById(R.id.linearMain);
 
-        
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
