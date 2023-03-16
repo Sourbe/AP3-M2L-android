@@ -34,6 +34,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_DOMAINE_TABLE);
 
+        db.execSQL("INSERT INTO domaine VALUES(1,'Gestion')");
+        db.execSQL("INSERT INTO domaine VALUES(2,'Informatique')");
+        db.execSQL("INSERT INTO domaine VALUES(3,'Développement durable')");
+        db.execSQL("INSERT INTO domaine VALUES(4,'Secourisme')");
+        db.execSQL("INSERT INTO domaine VALUES(5,'Communication')");
+
         String CREATE_FORMATION_TABLE = "CREATE TABLE formation ( " +
                 "idF INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "idDom INTEGER, "+
@@ -42,16 +48,71 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_FORMATION_TABLE);
 
+        db.execSQL("INSERT INTO formation VALUES(1,1,'Gestion 1')");
+        db.execSQL("INSERT INTO formation VALUES(2,1,'Gestion 2')");
+        db.execSQL("INSERT INTO formation VALUES(3,2,'Informatique 1')");
+        db.execSQL("INSERT INTO formation VALUES(4,2,'Informatique 2')");
+        db.execSQL("INSERT INTO formation VALUES(5,3,'Développement durable 1')");
+        db.execSQL("INSERT INTO formation VALUES(6,3,'Développement durable 2')");
+        db.execSQL("INSERT INTO formation VALUES(7,4,'Secourisme 1')");
+        db.execSQL("INSERT INTO formation VALUES(8,4,'Secourisme 2')");
+        db.execSQL("INSERT INTO formation VALUES(9,5,'Communication 1')");
+        db.execSQL("INSERT INTO formation VALUES(10,5,'Communication 2')");
+
         String CREATE_SESSION_TABLE = "CREATE TABLE session ( " +
-                "idS INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "idDom INTEGER, "+
                 "idForm INTEGER, "+
+                "idS INTEGER, " +
                 "dateDebut DATE, " +
                 "dateFin DATE, "+
+                "PRIMARY KEY(idS, idForm, idDom), "+
                 "FOREIGN KEY(idDom) REFERENCES domaine(idD), "+
                 "FOREIGN KEY(idForm) REFERENCES formation(idF))";
 
         db.execSQL(CREATE_SESSION_TABLE);
+
+        db.execSQL("INSERT INTO formation VALUES(1,1,1,'2023-09-01','2023-09-03')");
+        db.execSQL("INSERT INTO formation VALUES(1,1,2,'2023-09-01','2023-09-03')");
+
+        db.execSQL("INSERT INTO formation VALUES(1,2,1,'2023-09-13','2023-05-15')");
+        db.execSQL("INSERT INTO formation VALUES(1,2,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(2,1,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(2,1,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(2,2,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(2,2,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,1,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,1,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,2,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,2,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(4,1,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(4,1,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(4,2,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(4,2,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(5,1,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(5,1,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO formation VALUES(3,3,2,'2023-09-20','2023-09-23')");
+
     }
 
     @Override
@@ -65,6 +126,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      */
  
     private static final String TABLE_USERS = "users";
+    private static final String TABLE_DOMAINE = "domaine";
+    private static final String TABLE_FORMATION = "formation";
+    private static final String TABLE_SESSION = "session";
 
  
     private static final String USERS_KEY_ID = "id";
@@ -90,25 +154,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     	
 	    return false;
 	}
-/*
-    public String recupDigicode(int day, int month, int year, String salle) {
 
-        //2015-12-17
-        String Date = String.format ("{0000}-{00}-{00}", year, month, day);
-
-
+    public String[] getDomaines() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor mCursor = db.rawQuery("SELECT digicode FROM " + TABLE_DIGICODE + " WHERE salle=? AND date=?", new String[]{salle,Date});
-
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_DOMAINE, new String[]{});
         if (mCursor != null) {
-            // S'il y a un resultat...
-
             if(mCursor.getCount() > 0)
             {
-                return mCursor.getString(0);
+                String[] res = new String[mCursor.getCount()];
+                for (int i = 0; i < mCursor.getCount(); i++){
+                    res[i] = mCursor.getString(i);
+                }
+                return res;
             }
         }
-
-        return "";
-    }*/
+        return new String[]{};
+    }
 }
