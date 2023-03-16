@@ -48,16 +48,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_FORMATION_TABLE);
 
-        db.execSQL("INSERT INTO formation VALUES(1,1,'Gestion 1')");
-        db.execSQL("INSERT INTO formation VALUES(1,2,'Gestion 2')");
-        db.execSQL("INSERT INTO formation VALUES(2,1,'Informatique 1')");
-        db.execSQL("INSERT INTO formation VALUES(2,2,'Informatique 2')");
-        db.execSQL("INSERT INTO formation VALUES(3,1,'Développement durable 1')");
-        db.execSQL("INSERT INTO formation VALUES(3,2,'Développement durable 2')");
-        db.execSQL("INSERT INTO formation VALUES(4,1,'Secourisme 1')");
-        db.execSQL("INSERT INTO formation VALUES(4,2,'Secourisme 2')");
-        db.execSQL("INSERT INTO formation VALUES(5,1,'Communication 1')");
-        db.execSQL("INSERT INTO formation VALUES(5,2,'Communication 2')");
+        db.execSQL("INSERT INTO formation VALUES(1,1,'Gestion 1', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(1,2,'Gestion 2', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(2,1,'Informatique 1', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(2,2,'Informatique 2', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(3,1,'Développement durable 1', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(3,2,'Développement durable 2', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(4,1,'Secourisme 1', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(4,2,'Secourisme 2', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(5,1,'Communication 1', 'Description')");
+        db.execSQL("INSERT INTO formation VALUES(5,2,'Communication 2', 'Description')");
 
         String CREATE_SESSION_TABLE = "CREATE TABLE session ( " +
                 "idDom INTEGER, "+
