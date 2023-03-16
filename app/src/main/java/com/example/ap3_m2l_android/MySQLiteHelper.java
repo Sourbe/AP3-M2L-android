@@ -72,35 +72,35 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_SESSION_TABLE);
 
-        db.execSQL("INSERT INTO formation VALUES(1,1,1,'2023-09-01','2023-09-03')");
-        db.execSQL("INSERT INTO formation VALUES(1,1,2,'2023-09-10','2023-09-12')");
+        db.execSQL("INSERT INTO session VALUES(1,1,1,'2023-09-01','2023-09-03')");
+        db.execSQL("INSERT INTO session VALUES(1,1,2,'2023-09-10','2023-09-12')");
 
-        db.execSQL("INSERT INTO formation VALUES(1,2,1,'2023-09-20','2023-09-21')");
-        db.execSQL("INSERT INTO formation VALUES(1,2,2,'2023-09-28','2023-09-30')");
+        db.execSQL("INSERT INTO session VALUES(1,2,1,'2023-09-20','2023-09-21')");
+        db.execSQL("INSERT INTO session VALUES(1,2,2,'2023-09-28','2023-09-30')");
 
-        db.execSQL("INSERT INTO formation VALUES(2,1,1,'2023-10-01','2023-10-05')");
-        db.execSQL("INSERT INTO formation VALUES(2,1,2,'2023-10-15','2023-09-20')");
+        db.execSQL("INSERT INTO session VALUES(2,1,1,'2023-10-01','2023-10-05')");
+        db.execSQL("INSERT INTO session VALUES(2,1,2,'2023-10-15','2023-09-20')");
 
-        db.execSQL("INSERT INTO formation VALUES(2,2,1,'2023-10-23','2023-10-24')");
-        db.execSQL("INSERT INTO formation VALUES(2,2,2,'2023-10-30','2023-10-31')");
+        db.execSQL("INSERT INTO session VALUES(2,2,1,'2023-10-23','2023-10-24')");
+        db.execSQL("INSERT INTO session VALUES(2,2,2,'2023-10-30','2023-10-31')");
 
-        db.execSQL("INSERT INTO formation VALUES(3,1,1,'2023-11-05','2023-11-07')");
-        db.execSQL("INSERT INTO formation VALUES(3,1,2,'2023-11-13','2023-11-15')");
+        db.execSQL("INSERT INTO session VALUES(3,1,1,'2023-11-05','2023-11-07')");
+        db.execSQL("INSERT INTO session VALUES(3,1,2,'2023-11-13','2023-11-15')");
 
-        db.execSQL("INSERT INTO formation VALUES(3,2,1,'2023-11-20','2023-11-23')");
-        db.execSQL("INSERT INTO formation VALUES(3,2,2,'2023-12-05','2023-12-09')");
+        db.execSQL("INSERT INTO session VALUES(3,2,1,'2023-11-20','2023-11-23')");
+        db.execSQL("INSERT INTO session VALUES(3,2,2,'2023-12-05','2023-12-09')");
 
-        db.execSQL("INSERT INTO formation VALUES(4,1,1,'2023-12-15','2023-12-15')");
-        db.execSQL("INSERT INTO formation VALUES(4,1,2,'2023-12-20','2023-12-20')");
+        db.execSQL("INSERT INTO session VALUES(4,1,1,'2023-12-15','2023-12-15')");
+        db.execSQL("INSERT INTO session VALUES(4,1,2,'2023-12-20','2023-12-20')");
 
-        db.execSQL("INSERT INTO formation VALUES(4,2,1,'2024-01-02','2024-01-06')");
-        db.execSQL("INSERT INTO formation VALUES(4,2,2,'2024-01-10','2024-01-14')");
+        db.execSQL("INSERT INTO session VALUES(4,2,1,'2024-01-02','2024-01-06')");
+        db.execSQL("INSERT INTO session VALUES(4,2,2,'2024-01-10','2024-01-14')");
 
-        db.execSQL("INSERT INTO formation VALUES(5,1,1,'2024-01-20','2023-09-23')");
-        db.execSQL("INSERT INTO formation VALUES(5,1,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO session VALUES(5,1,1,'2024-01-20','2023-09-23')");
+        db.execSQL("INSERT INTO session VALUES(5,1,2,'2023-09-20','2023-09-23')");
 
-        db.execSQL("INSERT INTO formation VALUES(5,2,1,'2023-09-20','2023-09-23')");
-        db.execSQL("INSERT INTO formation VALUES(5,2,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO session VALUES(5,2,1,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO session VALUES(5,2,2,'2023-09-20','2023-09-23')");
 
     }
 
