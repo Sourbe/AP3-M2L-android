@@ -96,11 +96,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO session VALUES(4,2,1,'2024-01-02','2024-01-06')");
         db.execSQL("INSERT INTO session VALUES(4,2,2,'2024-01-10','2024-01-14')");
 
-        db.execSQL("INSERT INTO session VALUES(5,1,1,'2024-01-20','2023-09-23')");
-        db.execSQL("INSERT INTO session VALUES(5,1,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO session VALUES(5,1,1,'2024-01-20','2024-01-23')");
+        db.execSQL("INSERT INTO session VALUES(5,1,2,'2024-02-01','2024-02-04')");
 
-        db.execSQL("INSERT INTO session VALUES(5,2,1,'2023-09-20','2023-09-23')");
-        db.execSQL("INSERT INTO session VALUES(5,2,2,'2023-09-20','2023-09-23')");
+        db.execSQL("INSERT INTO session VALUES(5,2,1,'2024-02-10','2024-02-12')");
+        db.execSQL("INSERT INTO session VALUES(5,2,2,'2024-02-20','2024-02-22')");
 
     }
 
@@ -168,7 +168,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             {
                 String[] res = new String[mCursor.getCount()];
                 for (int i = 0; i < mCursor.getCount(); i++){
-                    res[i] = mCursor.getString(i);
+                    res[i] = mCursor.getString(0);
+                    mCursor.moveToNext();
                 }
                 return res;
             }
