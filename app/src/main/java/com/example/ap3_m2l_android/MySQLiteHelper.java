@@ -23,8 +23,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_USER_TABLE);
 
-        // Creation d'un jeu d'essai
-
         db.execSQL("INSERT INTO users VALUES(1,'a@gmail.com',123)");
         db.execSQL("INSERT INTO users VALUES(2,'b@gmail.com',456)");
 
@@ -75,40 +73,29 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL("INSERT INTO session VALUES(1,1,1,'2023-09-01','2023-09-03')");
         db.execSQL("INSERT INTO session VALUES(1,1,2,'2023-09-10','2023-09-12')");
-
         db.execSQL("INSERT INTO session VALUES(1,2,1,'2023-09-20','2023-09-21')");
         db.execSQL("INSERT INTO session VALUES(1,2,2,'2023-09-28','2023-09-30')");
-
         db.execSQL("INSERT INTO session VALUES(2,1,1,'2023-10-01','2023-10-05')");
         db.execSQL("INSERT INTO session VALUES(2,1,2,'2023-10-15','2023-09-20')");
-
         db.execSQL("INSERT INTO session VALUES(2,2,1,'2023-10-23','2023-10-24')");
         db.execSQL("INSERT INTO session VALUES(2,2,2,'2023-10-30','2023-10-31')");
-
         db.execSQL("INSERT INTO session VALUES(3,1,1,'2023-11-05','2023-11-07')");
         db.execSQL("INSERT INTO session VALUES(3,1,2,'2023-11-13','2023-11-15')");
-
         db.execSQL("INSERT INTO session VALUES(3,2,1,'2023-11-20','2023-11-23')");
         db.execSQL("INSERT INTO session VALUES(3,2,2,'2023-12-05','2023-12-09')");
-
         db.execSQL("INSERT INTO session VALUES(4,1,1,'2023-12-15','2023-12-15')");
         db.execSQL("INSERT INTO session VALUES(4,1,2,'2023-12-20','2023-12-20')");
-
         db.execSQL("INSERT INTO session VALUES(4,2,1,'2024-01-02','2024-01-06')");
         db.execSQL("INSERT INTO session VALUES(4,2,2,'2024-01-10','2024-01-14')");
-
         db.execSQL("INSERT INTO session VALUES(5,1,1,'2024-01-20','2024-01-23')");
         db.execSQL("INSERT INTO session VALUES(5,1,2,'2024-02-01','2024-02-04')");
-
         db.execSQL("INSERT INTO session VALUES(5,2,1,'2024-02-10','2024-02-12')");
         db.execSQL("INSERT INTO session VALUES(5,2,2,'2024-02-20','2024-02-22')");
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS users");
-
     }
     
     /**
@@ -120,20 +107,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     private static final String TABLE_FORMATION = "formation";
     private static final String TABLE_SESSION = "session";
 
- 
     private static final String USERS_KEY_ID = "id";
     private static final String USERS_KEY_LOGIN = "login";
     private static final String USERS_KEY_PASSWORD = "password";
-    
 
-    
     private static final String[] USERS_COLUMNS = {USERS_KEY_ID,USERS_KEY_LOGIN,USERS_KEY_PASSWORD};
-
 
     public boolean login(String login, String password) {
     	SQLiteDatabase db = this.getWritableDatabase();
     	Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE login=? AND password=?", new String[]{login,password});
-    	
     	if (mCursor != null) {
 	    	if(mCursor.getCount() > 0)
 	    	{
