@@ -187,6 +187,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
                 mCursor.moveToFirst();
                 for (int i = 0; i < mCursor.getCount(); i++){
+                    /*String Date1 = mCursor.getString(0);
+                    String day1 =  Date1.substring(8,2);
+                    String month1 =  Date1.substring(5,2);
+                    String year1 =  Date1.substring(0,4);
+                    String StrDate1 = String.format("{0}/{1}/{2}",day1, month1, year1);
+
+                    String Date2 = mCursor.getString(1);
+                    String day2 =  Date2.substring(8,2);
+                    String month2 =  Date2.substring(5,2);
+                    String year2 =  Date2.substring(0,4);
+                    String StrDate2 = String.format("{0}/{1}/{2}",day2, month2, year2);*/
+
                     res[i] = "du " + mCursor.getString(0) +" au " + mCursor.getString(1);
                     mCursor.moveToNext();
                 }
