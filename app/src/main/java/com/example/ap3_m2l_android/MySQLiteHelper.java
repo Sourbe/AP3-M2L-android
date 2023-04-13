@@ -167,12 +167,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         if (mCursor != null) {
             if(mCursor.getCount() > 0)
             {
-                String[] res = new String[mCursor.getCount()];
+                String[] res = new String[2];
                 mCursor.moveToFirst();
-                for (int i = 0; i < mCursor.getCount(); i++){
-                    res[i] = mCursor.getString(0);
-                    mCursor.moveToNext();
-                }
+                res[0] = mCursor.getString(0);
+                res[1] = mCursor.getString(1);
                 return res;
             }
         }
@@ -182,18 +180,19 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public String[] getSessions(int idD, int idF) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor mCursor = db.rawQuery("SELECT dateDebut, dateFin FROM " + TABLE_SESSION + " WHERE idDom=? AND idForm=?", new String[]{Integer.toString(idD), Integer.toString(idF)});
+        String[] res = new String[mCursor.getCount()];
         if (mCursor != null) {
             if(mCursor.getCount() > 0)
             {
-                String[] res = new String[mCursor.getCount()];
+
                 mCursor.moveToFirst();
                 for (int i = 0; i < mCursor.getCount(); i++){
-                    res[i] = mCursor.getString(0);
+                    res[i] = "du " + mCursor.getString(0) +" au " + mCursor.getString(1);
                     mCursor.moveToNext();
                 }
                 return res;
             }
         }
-        return new String[]{};
+        return res;
     }
 }

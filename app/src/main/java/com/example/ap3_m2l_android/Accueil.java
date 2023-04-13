@@ -89,13 +89,15 @@ public class Accueil extends AppCompatActivity {
 
                     Log.i("TAG", "index :" + index);
 
-                    Toast.makeText(getApplicationContext(),
+                    /*Toast.makeText(getApplicationContext(),
                             "Clicked Button Index :" + index,
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_LONG).show();*/
 
                     Intent intent = new Intent(Accueil.this, Formation.class);
-                    intent.putExtra("IdD", ID);
-                    intent.putExtra("IdF", index);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("IdD", Integer.toString(ID));
+                    bundle.putString("IdF", Integer.toString(index));
+                    intent.putExtras(bundle);
                     startActivity(intent);
 
                 }
