@@ -20,13 +20,11 @@ public class Formation extends AppCompatActivity {
 
         final MySQLiteHelper myDbHelper = new MySQLiteHelper(this);
 
-        Intent intent = getIntent();
         // On suppose que tu as mis un String dans l'Intent via le putExtra()
         Bundle bundle = getIntent().getExtras();
         String IdD = bundle.getString("IdD");
         String IdF = bundle.getString("IdF");
 
-        Log.i("idD : " + IdD ,"idF : " + IdF);
         String[] formation = myDbHelper.getFormation(Integer.parseInt(IdD), Integer.parseInt(IdF));
 
         TextView libelle = findViewById(R.id.formation_libelle);
