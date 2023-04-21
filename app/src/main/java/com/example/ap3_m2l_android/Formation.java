@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ public class Formation extends AppCompatActivity {
         String IdD = bundle.getString("IdD");
         String IdF = bundle.getString("IdF");
 
+        Log.i("idD : " + IdD ,"idF : " + IdF);
         String[] formation = myDbHelper.getFormation(Integer.parseInt(IdD), Integer.parseInt(IdF));
 
         TextView libelle = findViewById(R.id.formation_libelle);

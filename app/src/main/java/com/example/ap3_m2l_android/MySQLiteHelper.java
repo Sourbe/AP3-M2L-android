@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
@@ -42,7 +43,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 "idDom INTEGER, "+
                 "idF INTEGER, " +
                 "libelle TEXT, "+
-                "description TEST, "+
+                "description TEXT, "+
                 "PRIMARY KEY(idDom,idF), "+
                 "FOREIGN KEY(idDom) REFERENCES domaine(idD))";
 
@@ -163,6 +164,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     public String[] getFormation(int idD, int idF) {
         SQLiteDatabase db = this.getWritableDatabase();
+
         Cursor mCursor = db.rawQuery("SELECT libelle, description FROM " + TABLE_FORMATION + " WHERE idDom=? AND idF=?", new String[]{Integer.toString(idD), Integer.toString(idF)});
         if (mCursor != null) {
             if(mCursor.getCount() > 0)
