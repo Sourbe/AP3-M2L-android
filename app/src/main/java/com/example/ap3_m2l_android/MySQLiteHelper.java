@@ -49,14 +49,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_FORMATION_TABLE);
 
-        db.execSQL("INSERT INTO formation VALUES(1,1,'Soirée d'information sur la convention collective nationale du sport', 'Une convention collective nationale (CCN) est un accord signé entre une organisation professionnelle d'employeurs et un syndicat de salariés.')");
+        db.execSQL("INSERT INTO formation VALUES(1,1,'Soirée d information sur la convention collective nationale du sport', 'Une convention collective nationale (CCN) est un accord signé entre une organisation professionnelle d employeurs et un syndicat de salariés.')");
         db.execSQL("INSERT INTO formation VALUES(1,2,'Approfondissement de la convention collective nationale du sport', 'Actualisation des connaissances sur la convention collective nationale du sport et la responsabilité des dirigeants')");
         db.execSQL("INSERT INTO formation VALUES(2,1,'Power point Niveau 2', 'Parfaire ses connaissances sur PowerPoint')");
         db.execSQL("INSERT INTO formation VALUES(2,2,'Photoshop Niveau 1', 'Découvrir le traitement des images numériques couleur ainsi que leur séparation quadrichromique. Répondre aux besoins des photographes, photograveurs, des créatifs et des inventeurs d’images. Acquérir une méthode de travail professionnelle')");
         db.execSQL("INSERT INTO formation VALUES(3,1,'Organiser une manifestation éco responsable', 'Description')");
         db.execSQL("INSERT INTO formation VALUES(4,1,'Prévention et secours civique (PSC)', 'Apprendre à réagir face à des situations de la vie quotidienne: malaise, traumatismes, perte de connaissance, arrêt cardiaque, etc.')");
         db.execSQL("INSERT INTO formation VALUES(4,2,'Bonnes pratiques et premiers secours', 'Les gestes élémentaires de premiers secours permettent d’intervenir dans une situation d’urgence ou de danger. Ils sont faciles à apprendre et leur impact peut sauver des vies.')");
-        db.execSQL("INSERT INTO formation VALUES(5,1,'Conduite de réunion', 'La conduite de réunion ne s'improvise pas. Pour atteindre les objectifs fixés et éviter la réunionite, quelques bonnes pratiques sont à maîtriser.')");
+        db.execSQL("INSERT INTO formation VALUES(5,1,'Conduite de réunion', 'La conduite de réunion ne s improvise pas. Pour atteindre les objectifs fixés et éviter la réunionite, quelques bonnes pratiques sont à maîtriser.')");
         db.execSQL("INSERT INTO formation VALUES(5,2,'Communiquer avec la presse', 'Apprendre à communiquer avec la presse.')");
 
         String CREATE_SESSION_TABLE = "CREATE TABLE session ( " +
