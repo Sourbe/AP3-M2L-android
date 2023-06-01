@@ -1,0 +1,69 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    login TEXT,
+    password TEXT
+)
+
+INSERT INTO users VALUES(1,'a@gmail.com',123)
+INSERT INTO users VALUES(2,'b@gmail.com',456)
+
+CREATE TABLE domaine ( " +
+    idD INTEGER PRIMARY KEY, " +
+    libelle TEXT
+)
+
+INSERT INTO domaine VALUES(1,'Gestion')
+INSERT INTO domaine VALUES(2,'Informatique')
+INSERT INTO domaine VALUES(3,'Développement durable')
+INSERT INTO domaine VALUES(4,'Secourisme')
+INSERT INTO domaine VALUES(5,'Communication')
+
+CREATE TABLE formation (
+    idDom INTEGER,
+    idF INTEGER,
+    libelle TEXT,
+    description TEXT,
+    PRIMARY KEY(idDom,idF),
+    FOREIGN KEY(idDom) REFERENCES domaine(idD)
+)
+
+INSERT INTO formation VALUES(1,1,'Soirée d information sur la convention collective nationale du sport', 'Une convention collective nationale (CCN) est un accord signé entre une organisation professionnelle d employeurs et un syndicat de salariés.')
+INSERT INTO formation VALUES(1,2,'Approfondissement de la convention collective nationale du sport', 'Actualisation des connaissances sur la convention collective nationale du sport et la responsabilité des dirigeants')
+INSERT INTO formation VALUES(2,1,'Power point Niveau 2', 'Parfaire ses connaissances sur PowerPoint')
+INSERT INTO formation VALUES(2,2,'Photoshop Niveau 1', 'Découvrir le traitement des images numériques couleur ainsi que leur séparation quadrichromique. Répondre aux besoins des photographes, photograveurs, des créatifs et des inventeurs d’images. Acquérir une méthode de travail professionnelle')
+INSERT INTO formation VALUES(3,1,'Organiser une manifestation éco responsable', 'Tous les manifestations, petites ou grandes représentent une occasion particulière pour la mise en place d une démarche éco-responsable.')
+INSERT INTO formation VALUES(4,1,'Prévention et secours civique (PSC)', 'Apprendre à réagir face à des situations de la vie quotidienne: malaise, traumatismes, perte de connaissance, arrêt cardiaque, etc.')
+INSERT INTO formation VALUES(4,2,'Bonnes pratiques et premiers secours', 'Les gestes élémentaires de premiers secours permettent d’intervenir dans une situation d’urgence ou de danger. Ils sont faciles à apprendre et leur impact peut sauver des vies.')
+INSERT INTO formation VALUES(5,1,'Conduite de réunion', 'La conduite de réunion ne s improvise pas. Pour atteindre les objectifs fixés et éviter la réunionite, quelques bonnes pratiques sont à maîtriser.')
+INSERT INTO formation VALUES(5,2,'Communiquer avec la presse', 'Apprendre à communiquer avec la presse.')
+
+CREATE TABLE session (
+    idDom INTEGER,
+    idForm INTEGER,
+    idS INTEGER,
+    dateDebut DATE,
+    dateFin DATE,
+    PRIMARY KEY(idS, idForm, idDom),
+    FOREIGN KEY(idDom) REFERENCES domaine(idD),
+    FOREIGN KEY(idForm) REFERENCES formation(idF)
+)
+
+
+INSERT INTO session VALUES(1,1,1,'2023-09-01','2023-09-03')
+INSERT INTO session VALUES(1,1,2,'2023-09-10','2023-09-12')
+INSERT INTO session VALUES(1,2,1,'2023-09-20','2023-09-21')
+INSERT INTO session VALUES(1,2,2,'2023-09-28','2023-09-30')
+INSERT INTO session VALUES(2,1,1,'2023-10-01','2023-10-05')
+INSERT INTO session VALUES(2,1,2,'2023-10-15','2023-09-20')
+INSERT INTO session VALUES(2,2,1,'2023-10-23','2023-10-24')
+INSERT INTO session VALUES(2,2,2,'2023-10-30','2023-10-31')
+INSERT INTO session VALUES(3,1,1,'2023-11-05','2023-11-07')
+INSERT INTO session VALUES(3,1,2,'2023-11-13','2023-11-15')
+INSERT INTO session VALUES(4,1,1,'2023-12-15','2023-12-15')
+INSERT INTO session VALUES(4,1,2,'2023-12-20','2023-12-20')
+INSERT INTO session VALUES(4,2,1,'2024-01-02','2024-01-06')
+INSERT INTO session VALUES(4,2,2,'2024-01-10','2024-01-14')
+INSERT INTO session VALUES(5,1,1,'2024-01-20','2024-01-23')
+INSERT INTO session VALUES(5,1,2,'2024-02-01','2024-02-04')
+INSERT INTO session VALUES(5,2,1,'2024-02-10','2024-02-12')
+INSERT INTO session VALUES(5,2,2,'2024-02-20','2024-02-22')
